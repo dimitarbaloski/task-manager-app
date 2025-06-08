@@ -15,7 +15,7 @@ services:
       - task-net
 
   backend:
-    build: ./backend
+    image: ${DOCKER_USERNAME}/taskmanagerapp-backend:${BRANCH_NAME}-latest
     ports:
       - "8082:8082"
     depends_on:
@@ -28,7 +28,7 @@ services:
       - task-net
 
   frontend:
-    build: ./frontend
+    image: ${DOCKER_USERNAME}/taskmanagerapp-frontend:${BRANCH_NAME}-latest
     ports:
       - "3000:80"
     depends_on:
