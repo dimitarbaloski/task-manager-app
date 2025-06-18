@@ -14,7 +14,7 @@ services:
       - task-net
 
   backend:
-    build: ./backend
+    image: dimitarbaloski/taskmanagerapp-backend:main-latest
     ports:
       - "8083:8083"
     depends_on:
@@ -25,7 +25,7 @@ services:
       - task-net
 
   frontend:
-    build: ./frontend
+    image: dimitarbaloski/taskmanagerapp-frontend:main-latest
     ports:
       - "3000:80"
     depends_on:
