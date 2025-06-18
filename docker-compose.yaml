@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  mongo-db:
+    image: mongo:6
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: taskmanagerdb
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - task-net
+
+  backend:
+    build: ./backend
+    ports:
+      - "8083:8083"
+    depends_on:
+      - mongo-db
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongo-db:27017/taskmanagerdb
+    networks:
+      - task-net
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - task-net
+
+networks:
+  task-net:
+
+volumes:
+  mongo_data:
