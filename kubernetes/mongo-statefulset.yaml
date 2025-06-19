@@ -5,7 +5,7 @@ metadata:
   namespace: taskmanagerapp
 spec:
   serviceName: mongo-db
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: mongo-db
