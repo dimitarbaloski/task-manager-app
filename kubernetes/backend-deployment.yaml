@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskmanager-backend
+  namespace: taskmanagerapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: taskmanager-backend
+  template:
+    metadata:
+      labels:
+        app: taskmanager-backend
+    spec:
+      containers:
+        - name: backend
+          image: dimitarbaloski/taskmanagerapp-backend:main-latest
+          ports:
+            - containerPort: 8083
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: taskmanager-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: taskmanager-backend
+  namespace: taskmanagerapp
+spec:
+  selector:
+    app: taskmanager-backend
+  ports:
+    - protocol: TCP
+      port: 8083
+      targetPort: 8083
+  type: ClusterIP

@@ -10,7 +10,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/tasks")
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+@CrossOrigin(origins = "http://taskmanagerapp.local", allowCredentials = "true")
+
 public class TaskController {
 
     private final TaskService taskService;

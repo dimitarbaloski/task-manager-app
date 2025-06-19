@@ -33,14 +33,12 @@ export default function TaskFormPage() {
         let method;
 
         if (editingTask) {
-            url = `http://localhost:8083/api/tasks/${editingTask.id}/edit`;
+            url = `/api/tasks/${editingTask.id}/edit`;
             method = 'PUT';
         } else {
-            url = "http://localhost:8083/api/tasks/add";
+            url = "/api/tasks/add";
             method = 'POST';
         }
-
-
 
         try {
             const res = await fetch(url, {

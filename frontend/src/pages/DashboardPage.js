@@ -10,7 +10,7 @@ export default function DashboardPage() {
     useEffect(() => {
         async function fetchTasks() {
             try {
-                const res = await fetch('http://localhost:8083/api/tasks', {
+                const res = await fetch('/api/tasks', {
                     method: 'GET',
                     credentials: 'include',
                 });
@@ -27,7 +27,7 @@ export default function DashboardPage() {
 
     async function completeTask(id) {
         try {
-            const res = await fetch(`http://localhost:8083/api/tasks/${id}/complete`, {
+            const res = await fetch(`/api/tasks/${id}/complete`, {
                 method: 'POST',
                 credentials: 'include',
             });
@@ -44,7 +44,7 @@ export default function DashboardPage() {
     async function deleteTask(id) {
         if (!window.confirm('Delete this task?')) return;
         try {
-            const res = await fetch(`http://localhost:8083/api/tasks/${id}`, {
+            const res = await fetch(`/api/tasks/${id}`, {
                 method: 'DELETE',
                 credentials: 'include',
             });

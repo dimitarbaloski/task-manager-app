@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskmanager-frontend
+  namespace: taskmanagerapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: taskmanager-frontend
+  template:
+    metadata:
+      labels:
+        app: taskmanager-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: dimitarbaloski/taskmanagerapp-frontend:main-latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: NGINX_MODE
+              value: "k8s"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: taskmanager-frontend
+  namespace: taskmanagerapp
+spec:
+  selector:
+    app: taskmanager-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

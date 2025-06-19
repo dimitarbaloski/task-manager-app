@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: taskmanager-ingress
+  namespace: taskmanagerapp
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+
+spec:
+  rules:
+    - host: taskmanagerapp.local
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: taskmanager-backend
+                port:
+                  number: 8083
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: taskmanager-frontend
+                port:
+                  number: 80

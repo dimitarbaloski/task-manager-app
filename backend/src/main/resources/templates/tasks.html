@@ -31,9 +31,7 @@
 
     <div class="header">
         <h2>Your Tasks</h2>
-        <div class="greeting">
-            Hello, <span th:text="${loggedUser}">User</span>!
-        </div>
+
     </div>
 
     <a href="/tasks/add" class="btn btn-success btn-add-task">+ Add New Task</a>
@@ -71,9 +69,6 @@
         </tbody>
     </table>
 
-    <form th:action="@{/logout}" method="post" class="mt-4">
-        <button type="submit" class="btn btn-outline-secondary">Logout</button>
-    </form>
 
 </div>
 
