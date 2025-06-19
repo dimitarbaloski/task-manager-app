@@ -4,7 +4,7 @@ metadata:
   name: taskmanager-frontend
   namespace: taskmanagerapp
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: taskmanager-frontend
